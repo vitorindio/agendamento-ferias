@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: sistema-ferias
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sistema_ferias
+    username: admin
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:seu-email@gmail.com}
+    password: ${MAIL_PASSWORD:sua-senha-app}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8080
+
+# JWT Configuration
+jwt:
+  # Chave em Base64 (512 bits = 64 bytes mínimo para HS512)
+  secret: ${JWT_SECRET:c2lzdGVtYS1mZXJpYXMtand0LXNlY3JldC1rZXktMjAyNC1zdXBlci1zZWd1cmEtcGFyYS1wcm9kdWNhby1taW5pbW8tNTEyLWJpdHM=}
+  expiration: 86400000 # 24 horas em milissegundos
+
+# Application Configuration
+app:
+  frontend-url: http://localhost:5173
+  confirmation-token-expiration: 86400000 # 24 horas
